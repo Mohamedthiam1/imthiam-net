@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio Mohamed Thiam - Ingénieur Systèmes Embarqués & IA</title>
+  <style>
+    /* Reset & basics */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header */
+    header {
+      background: #1a73e8;
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgb(26 115 232 / 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1 1 auto;
+      min-width: 250px;
+    }
+
+    nav a {
+      font-weight: 600;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+      font-size: 1rem;
+    }
+
+    nav a.active,
+    nav a:hover {
+      background-color: #155ab6;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(21, 90, 182, 0.6);
+    }
+
+    /* Language switch button */
+    #lang-switch {
+      background: #fff;
+      color: #1a73e8;
+      border: none;
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgb(26 115 232 / 0.2);
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+      min-width: 100px;
+    }
+
+    #lang-switch:hover {
+      background-color: #155ab6;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(21, 90, 182, 0.8);
+    }
+
+    header nav a {
+  color: #444;           /* visible couleur même inactif */
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header nav a:hover {
+  background-color: #ddd;
+  color: #000;
+}
+
+header nav a.active {
+  background-color: #0055cc;
+  color: #fff;
+}
+
+#lang-switch {
+  margin-left: 1em;
+  padding: 0.5em 1em;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#lang-switch:hover {
+  background-color: #ccc;
+}
+
+    /* Main container */
+    main {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Profile section flex */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(26, 115, 232, 0.3);
+      animation: fadeInScale 1s ease forwards;
+      opacity: 0;
+      transform: scale(0.9);
+      flex-shrink: 0;
+    }
+
+    @keyframes fadeInScale {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .profile-info {
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .profile-info h1 {
+      font-size: 2.5rem;
+      margin: 0 0 0.4rem;
+      color: #0b3d91;
+    }
+
+    .profile-info p {
+      font-size: 1.15rem;
+      color: #555;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Section titles */
+    h2 {
+      font-weight: 700;
+      color: #0b3d91;
+      border-bottom: 3px solid #1a73e8;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.8rem;
+      font-size: 1.8rem;
+    }
+
+    h3 {
+      color: #0a2e6a;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    /* Cards grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    /* Card style */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgb(26 115 232 / 0.12);
+      padding: 1.5rem 1.6rem;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, transform 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      min-height: 280px;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 30px rgb(26 115 232 / 0.25);
+      transform: translateY(-5px);
+    }
+
+    .card .title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #155ab6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .toggle-icon {
+      font-weight: 900;
+      font-size: 1.3rem;
+      user-select: none;
+      transition: transform 0.3s ease;
+      color: #155ab6;
+    }
+
+    .card.expanded .toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    /* Image styling for logos & project images */
+    .exp-img,
+    .project-img {
+      width: 100%;
+      max-height: 140px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f0f4fc;
+      padding: 10px;
+      margin-bottom: 1rem;
+      box-shadow: inset 0 0 8px rgb(26 115 232 / 0.1);
+      user-select: none;
+    }
+
+    /* Description text hidden by default */
+    .description {
+      margin-top: 0.5rem;
+      color: #444;
+      font-size: 0.95rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    /* When expanded show description */
+    .card.expanded .description {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    #skills {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.skill-category {
+  margin-bottom: 2em;
+}
+
+.skill-category h3 {
+  border-bottom: 2px solid #0078d4;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.8em;
+  color: #004a99;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.skills-list {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8em;
+}
+
+.skills-list li {
+  background-color: #e0f0ff;
+  color: #004a99;
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+    /* Languages section */
+    .languages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      font-size: 1rem;
+      justify-content: center;
+    }
+
+    .language-item {
+      background: #e8f0fe;
+      border-radius: 24px;
+      padding: 0.65rem 1.4rem;
+      font-weight: 600;
+      color: #1a73e8;
+      box-shadow: inset 0 0 10px rgb(26 115 232 / 0.2);
+      flex: 1 1 150px;
+      min-width: 160px;
+      text-align: center;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .language-item:hover {
+      background-color: #d0e3fe;
+      box-shadow: inset 0 0 15px rgb(26 115 232 / 0.35);
+    }
+
+    /* Contact card */
+    #contact .card p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      word-break: break-word;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1rem 0;
+      color: #666;
+      margin-top: 3rem;
+      user-select: none;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .skills-list {
+        columns: 1;
+      }
+
+      .profile-header {
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+  <nav>
+    <a href="#experiences" class="active" data-en="Experiences" data-fr="Expériences">Expériences</a>
+    <a href="#projects" data-en="Projects" data-fr="Projets">Projets</a>
+    <a href="#education" data-en="Education" data-fr="Formations">Formations</a>
+    <a href="#skills" data-en="Skills" data-fr="Compétences">Compétences</a>
+    <a href="#languages" data-en="Languages" data-fr="Langues">Langues</a>
+    <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+  </nav>
+  <button id="lang-switch" aria-label="Switch language">English</button>
+</header>
+
+  <main>
+    <div class="profile-header">
+  <img src="mypic.jpg" alt="Photo Mohamed Thiam" class="profile-photo" />
+  <div class="profile-info">
+    <h1 data-en="Mohamed Thiam" data-fr="Mohamed Thiam">Mohamed Thiam</h1>
+    <p data-en="4th-year engineering student specializing in embedded & autonomous systems | Passionate about Artificial Intelligence"
+       data-fr="Étudiant ingénieur 4<sup>e</sup> année spécialisé en systèmes embarqués & autonomes | Passionné d'Intelligence Artificielle">
+      Étudiant ingénieur 4<sup>e</sup> année spécialisé en systèmes embarqués & autonomes | Passionné d'Intelligence Artificielle
+    </p>
+    <p data-en="Seeking end-of-studies internship starting February 2026 in AI, electronics, or embedded and autonomous systems"
+       data-fr="Recherche un stage de fin d’études à partir de février 2026 en IA, électronique ou systèmes embarqués et autonomes">
+      Recherche un stage de fin d’études à partir de février 2026 en IA, électronique ou systèmes embarqués et autonomes
+    </p>
+  </div>
+</div>
+
+    <section id="professional-experience" tabindex="-1">
+  <h2 data-en="Professional Experience" data-fr="Expériences Professionnelles">Expériences Professionnelles</h2>
+
+  <div class="card-grid">
+    <div class="card" tabindex="0">
+      <div class="title">Santé des Ruches - Avril à Juillet 2025</div>
+      <div class="company">FNGTA - ESIEA (Stage)</div>
+      <div class="description">
+        Création d’une API Flask basée sur un modèle de classification pour détecter et compter les varroas sur images de langes, hébergée en intégration continue. Développement d’une application mobile Flutter pour la gestion des ruches et la lutte contre l’infestation des varroas.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">DocLinkers - Février à Décembre 2024</div>
+      <div class="company">Futuras Tech Solutions</div>
+      <div class="description">
+        Première application de télémédecine au Sénégal, facilitant les consultations en ligne, la gestion sécurisée des données et les urgences médicales à distance.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Go Press (à confirmer date et détails)</div>
+      <div class="company">Entreprise / Organisation</div>
+      <div class="description">
+        <!-- Ajoute ici une description concise de ce projet ou expérience pro -->
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section id="projects" tabindex="-1">
+  <h2 data-en="Projects" data-fr="Projets">Projets</h2>
+
+  <div class="card-grid">
+    <!-- Nouveaux projets -->
+
+    <div class="card" tabindex="0">
+      <div class="title">Projet ESIEA bot Robotique - Janvier 2025 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Projet ESIEA : Conception et développement d’un système robotique autonome capable de naviguer intelligemment et dynamiquement dans son environnement. Intégration de capteurs et algorithmes d’optimisation pour adaptation aux obstacles, prise de décisions en temps réel et réalisation efficace de diverses tâches.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Santé des Ruches - Avril à Juillet 2025 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        FNGTA - ESIEA (Stage professionnel) : Création d’une API Flask basée sur un modèle de classification pour détecter et compter les varroas sur images de langes, hébergée en intégration continue. Développement d’une application mobile Flutter pour la gestion des ruches et la lutte contre l’infestation des varroas.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Système FPGA - Octobre à Décembre 2024 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Projet ESIEA : Développement en VHDL d’une IP UART sur FPGA pour communication série avec PC, contrôle de servomoteur et récupération de données télémètre à ultrason, intégrés dans un système combiné de communication, contrôle et acquisition temps réel.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">DocLinkers - Février à Décembre 2024 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Futuras Tech Solutions (Expérience professionnelle) : Première application de télémédecine au Sénégal facilitant les consultations en ligne, la gestion sécurisée des données et les urgences médicales à distance.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Lunettes Intelligentes - Septembre à Novembre 2024 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Quinzaine Group LTD. : Conception d’un dispositif portable pour malvoyants, intégrant capteurs pour détecter obstacles et alerter via vibrations ou signaux audio, améliorant autonomie et sécurité.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Raspberry Pi 4 - Mars à Mai 2023 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Quinzaine Group LTD. : Création d’un système basé sur Raspberry Pi 4, breadboard et capteurs pour acquisition et surveillance temps réel des données environnementales, avec prise de décisions intelligentes pour domotique et industrie.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">ZenPayMe - Août 2024 - En cours <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Quinzaine Group LTD. : Développement d’une application sécurisée permettant aux prestataires de déposer des livrables et d’être payés après validation, avec intégration de systèmes de paiement sécurisés et expérience utilisateur optimisée.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Arosa’je - Octobre 2023 - En cours <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Projet EPSI : Application mobile connectant agriculteurs et supermarchés, facilitant la vente directe, la transparence et la rémunération juste, favorisant une chaîne d’approvisionnement locale et durable.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Shareey - Octobre 2023 - En cours <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Quinzaine Group LTD. : Application multivendeur lancée au Sénégal pour faciliter les échanges commerciaux, avec ajout récent de fonctionnalités telles que service GP et messagerie instantanée.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Fear of Kaunas - Avril à Juin 2024 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Blended Intensive Program : Participation à un programme intensif combinant travail à distance et présence à l’université de Kaunas (Lituanie), développement collaboratif d’un jeu 3D incluant modélisation.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Flutter Cloud Functions Course - Février 2024 - En cours <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Udemy : Instructeur d’un cours en ligne sur le développement mobile et Cloud, guidant les apprenants à créer une application de rappels (RemindMe) avec notifications en temps réel.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">ESTIM PRO - Juillet à Octobre 2021 <span class="toggle-icon">+</span></div>
+      <div class="description">
+        ESTIM SA : Stage professionnel de développement d’un logiciel de gestion administrative et financière, projet de sécurité sensible utilisant HTML, CSS, JavaScript, PHP, PostgreSQL, etc.
+      </div>
+    </div>
+
+    <div class="card" tabindex="0">
+      <div class="title">Trac Plus - Mai 2023 - En cours <span class="toggle-icon">+</span></div>
+      <div class="description">
+        Quinzaine Group LTD. : Application intégrant détection faciale, reconnaissance d’objets et texte, répondeur intelligent et IA avancée, incluant un détecteur intelligent de cancer du cerveau en développement.
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section id="education" tabindex="-1">
+  <h2 data-en="Education" data-fr="Formations">Formations</h2>
+  <ul class="education-list">
+    <li>
+      <strong>ESIEA PARIS</strong> — 2023 - 2026<br />
+      Cycle Ingénieur en Systèmes Embarqués et Autonomes
+    </li>
+    <li>
+      <strong>EPSI PARIS</strong> — 2022 - 2023<br />
+      Bachelor en Intelligence Artificielle
+    </li>
+    <li>
+      <strong>ÉCOLE SUPÉRIEURE POLYTECHNIQUE DE DAKAR</strong> — 2019 - 2022<br />
+      DUT en Informatique
+    </li>
+  </ul>
+
+  <h3 data-en="International Experience" data-fr="Expérience Internationale">Expérience Internationale</h3>
+  <ul class="education-list">
+    <li>
+      <strong>FINLANDE</strong><br />
+      Centria University of Applied Sciences<br />
+      (Semestre à l’étranger)<br />
+      Janvier 2024 - Juin 2024
+    </li>
+    <li>
+      <strong>LITUANIE</strong><br />
+      Kaunas University of Technology, KTU<br />
+      (Blended Intensive Program)<br />
+      Avril 2024 - Juin 2024
+    </li>
+  </ul>
+</section>
+
+    <section id="skills" tabindex="-1">
+  <h2 data-en="Skills" data-fr="Compétences">Compétences</h2>
+
+  <div class="skill-category">
+    <h3 data-en="Programming Languages" data-fr="Langages de programmation">Langages de programmation</h3>
+    <ul class="skills-list">
+      <li data-en="Python" data-fr="Python">Python</li>
+      <li data-en="C" data-fr="C">C</li>
+      <li data-en="C++" data-fr="C++">C++</li>
+      <li data-en="Java" data-fr="Java">Java</li>
+      <li data-en="VHDL" data-fr="VHDL">VHDL</li>
+      <li data-en="CUDA (GPU)" data-fr="CUDA (GPU)">CUDA (GPU)</li>
+      <li data-en="Matlab" data-fr="Matlab">Matlab</li>
+      <li data-en="Simulink" data-fr="Simulink">Simulink</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h3 data-en="Embedded Systems & Hardware" data-fr="Systèmes embarqués & matériel">Systèmes embarqués & matériel</h3>
+    <ul class="skills-list">
+      <li data-en="Arduino" data-fr="Arduino">Arduino</li>
+      <li data-en="Raspberry Pi" data-fr="Raspberry Pi">Raspberry Pi</li>
+      <li data-en="ESP32" data-fr="ESP32">ESP32</li>
+      <li data-en="STM32" data-fr="STM32">STM32</li>
+      <li data-en="Seeeduino" data-fr="Seeeduino">Seeeduino</li>
+      <li data-en="FPGA" data-fr="FPGA">FPGA</li>
+      <li data-en="FreeRTOS" data-fr="FreeRTOS">FreeRTOS</li>
+      <li data-en="Zephyr" data-fr="Zephyr">Zephyr</li>
+      <li data-en="CAN Protocol" data-fr="Protocole CAN">Protocole CAN</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h3 data-en="Networking & Cloud" data-fr="Réseaux & Cloud">Réseaux & Cloud</h3>
+    <ul class="skills-list">
+      <li data-en="MQTT" data-fr="MQTT">MQTT</li>
+      <li data-en="Docker" data-fr="Docker">Docker</li>
+      <li data-en="AWS" data-fr="AWS">AWS</li>
+      <li data-en="Google Cloud" data-fr="Google Cloud">Google Cloud</li>
+      <li data-en="Firebase" data-fr="Firebase">Firebase</li>
+      <li data-en="SQL" data-fr="SQL">SQL</li>
+      <li data-en="NoSQL" data-fr="NoSQL">NoSQL</li>
+      <li data-en="MongoDB" data-fr="MongoDB">MongoDB</li>
+      <li data-en="PostgreSQL" data-fr="PostgreSQL">PostgreSQL</li>
+      <li data-en="Neo4j" data-fr="Neo4j">Neo4j</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h3 data-en="AI & Machine Learning" data-fr="IA & apprentissage automatique">IA & apprentissage automatique</h3>
+    <ul class="skills-list">
+      <li data-en="TensorFlow" data-fr="TensorFlow">TensorFlow</li>
+      <li data-en="CNN (Deep Learning)" data-fr="CNN (Apprentissage profond)">CNN (Apprentissage profond)</li>
+      <li data-en="Computer Vision" data-fr="Vision par ordinateur">Vision par ordinateur</li>
+      <li data-en="Edge AI" data-fr="Edge AI">Edge AI</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h3 data-en="Software & Development Tools" data-fr="Outils & environnement de développement">Outils & environnement de développement</h3>
+    <ul class="skills-list">
+      <li data-en="Flutter" data-fr="Flutter">Flutter</li>
+      <li data-en="Android Studio" data-fr="Android Studio">Android Studio</li>
+      <li data-en="Godot" data-fr="Godot">Godot</li>
+      <li data-en="Unity" data-fr="Unity">Unity</li>
+      <li data-en="Blender" data-fr="Blender">Blender</li>
+      <li data-en="Agile Methodologies" data-fr="Méthodologies Agile">Méthodologies Agile</li>
+      <li data-en="Git" data-fr="Git">Git</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h3 data-en="Soft Skills" data-fr="Compétences humaines">Compétences humaines</h3>
+    <ul class="skills-list">
+      <li data-en="Occupational Risk Prevention" data-fr="Prévention de risques professionnels">Prévention de risques professionnels</li>
+      <li data-en="Teamwork" data-fr="Travail d’équipe">Travail d’équipe</li>
+      <li data-en="Communication" data-fr="Communication">Communication</li>
+    </ul>
+  </div>
+</section>
+
+    <section id="languages" tabindex="-1">
+  <h2 data-en="Languages" data-fr="Langues">Langues</h2>
+  <div class="languages">
+    <div class="language-item">Français</div>
+    <div class="language-item">Anglais — TOEIC 880 (B2+/C1)</div>
+    <div class="language-item">Espagnol (Intermédiaire)</div>
+    <div class="language-item">Finnois (débutant)</div>
+  </div>
+</section>
+
+    <section id="contact" tabindex="-1">
+  <h2 data-en="Contact" data-fr="Contact">Contact</h2>
+  <div class="card">
+    <p data-en="Email: mohamed.thiam@example.com" data-fr="Email : mohamed.thiam@example.com">Email : mohamed.thiam@example.com</p>
+    <p data-en="Phone: +33 6 12 34 56 78" data-fr="Téléphone : +33 6 12 34 56 78">Téléphone : +33 6 12 34 56 78</p>
+    <p data-en="LinkedIn: linkedin.com/in/mohamedthiam" data-fr="LinkedIn : linkedin.com/in/mohamedthiam">LinkedIn : linkedin.com/in/mohamedthiam</p>
+    <p data-en="Available throughout France and abroad" data-fr="Disponible partout en France et à l’étranger">Disponible partout en France et à l’étranger</p>
+  </div>
+</section>
+  </main>
+
+  <footer>
+    <p>© 2025 Mohamed Thiam - Tous droits réservés</p>
+  </footer>
+
+  <script>
+    // Toggle card expansion on click or keyboard Enter/Space
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('expanded');
+      });
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.classList.toggle('expanded');
+        }
+      });
+    });
+
+    // Language switcher functionality
+    const langSwitch = document.getElementById('lang-switch');
+    let currentLang = 'fr';
+
+    function updateTexts(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerHTML = (lang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-fr');
+      });
+    }
+
+    langSwitch.addEventListener('click', () => {
+      if (currentLang === 'fr') {
+        currentLang = 'en';
+        langSwitch.textContent = 'Français';
+        updateTexts('en');
+      } else {
+        currentLang = 'fr';
+        langSwitch.textContent = 'English';
+        updateTexts('fr');
+      }
+    });
+
+    // Initialize text according to default lang
+    updateTexts(currentLang);
+  </script>
+</body>
+
+</html>
