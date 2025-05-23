@@ -1,711 +1,856 @@
+
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio Mohamed Thiam - Ingénieur Systèmes Embarqués & IA</title>
-  <style>
-    /* Reset & basics */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f7fb;
-      color: #222;
-      line-height: 1.6;
-    }
-
-    a {
-      color: #1a73e8;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Header */
-    header {
-      background: #1a73e8;
-      color: white;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgb(26 115 232 / 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    nav {
-      display: flex;
-      gap: 1.8rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      flex: 1 1 auto;
-      min-width: 250px;
-    }
-
-    nav a {
-      font-weight: 600;
-      padding: 0.5rem 0.9rem;
-      border-radius: 6px;
-      transition: background-color 0.3s, color 0.3s;
-      user-select: none;
-      font-size: 1rem;
-    }
-
-    nav a.active,
-    nav a:hover {
-      background-color: #155ab6;
-      color: #fff;
-      box-shadow: 0 0 10px rgba(21, 90, 182, 0.6);
-    }
-
-    /* Language switch button */
-    #lang-switch {
-      background: #fff;
-      color: #1a73e8;
-      border: none;
-      padding: 0.45rem 1rem;
-      border-radius: 20px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgb(26 115 232 / 0.2);
-      transition: background-color 0.3s, color 0.3s;
-      user-select: none;
-      min-width: 100px;
-    }
-
-    #lang-switch:hover {
-      background-color: #155ab6;
-      color: #fff;
-      box-shadow: 0 0 12px rgba(21, 90, 182, 0.8);
-    }
-
-    header nav a {
-  color: #444;           /* visible couleur même inactif */
-  text-decoration: none;
-  padding: 0.5em 1em;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-header nav a:hover {
-  background-color: #ddd;
-  color: #000;
-}
-
-header nav a.active {
-  background-color: #0055cc;
-  color: #fff;
-}
-
-#lang-switch {
-  margin-left: 1em;
-  padding: 0.5em 1em;
-  background-color: #eee;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#lang-switch:hover {
-  background-color: #ccc;
-}
-
-    /* Main container */
-    main {
-      max-width: 960px;
-      margin: 2.5rem auto;
-      padding: 0 1rem;
-    }
-
-    /* Profile section flex */
-    .profile-header {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .profile-photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 6px 18px rgba(26, 115, 232, 0.3);
-      animation: fadeInScale 1s ease forwards;
-      opacity: 0;
-      transform: scale(0.9);
-      flex-shrink: 0;
-    }
-
-    @keyframes fadeInScale {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .profile-info {
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .profile-info h1 {
-      font-size: 2.5rem;
-      margin: 0 0 0.4rem;
-      color: #0b3d91;
-    }
-
-    .profile-info p {
-      font-size: 1.15rem;
-      color: #555;
-      line-height: 1.4;
-      margin: 0;
-    }
-
-    /* Section titles */
-    h2 {
-      font-weight: 700;
-      color: #0b3d91;
-      border-bottom: 3px solid #1a73e8;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1.8rem;
-      font-size: 1.8rem;
-    }
-
-    h3 {
-      color: #0a2e6a;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-
-    /* Cards grid */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-    }
-
-    /* Card style */
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgb(26 115 232 / 0.12);
-      padding: 1.5rem 1.6rem;
-      cursor: pointer;
-      transition: box-shadow 0.3s ease, transform 0.15s ease;
-      display: flex;
-      flex-direction: column;
-      user-select: none;
-      min-height: 280px;
-    }
-
-    .card:hover {
-      box-shadow: 0 12px 30px rgb(26 115 232 / 0.25);
-      transform: translateY(-5px);
-    }
-
-    .card .title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #155ab6;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.8rem;
-    }
-
-    .toggle-icon {
-      font-weight: 900;
-      font-size: 1.3rem;
-      user-select: none;
-      transition: transform 0.3s ease;
-      color: #155ab6;
-    }
-
-    .card.expanded .toggle-icon {
-      transform: rotate(45deg);
-    }
-
-    /* Image styling for logos & project images */
-    .exp-img,
-    .project-img {
-      width: 100%;
-      max-height: 140px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #f0f4fc;
-      padding: 10px;
-      margin-bottom: 1rem;
-      box-shadow: inset 0 0 8px rgb(26 115 232 / 0.1);
-      user-select: none;
-    }
-
-    /* Description text hidden by default */
-    .description {
-      margin-top: 0.5rem;
-      color: #444;
-      font-size: 0.95rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.4s ease;
-      opacity: 0;
-      line-height: 1.4;
-      flex-grow: 1;
-    }
-
-    /* When expanded show description */
-    .card.expanded .description {
-      max-height: 400px;
-      opacity: 1;
-    }
-
-    #skills {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1em;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.skill-category {
-  margin-bottom: 2em;
-}
-
-.skill-category h3 {
-  border-bottom: 2px solid #0078d4;
-  padding-bottom: 0.3em;
-  margin-bottom: 0.8em;
-  color: #004a99;
-  font-weight: 600;
-  font-size: 1.2rem;
-}
-
-.skills-list {
-  list-style-type: none;
-  padding-left: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8em;
-}
-
-.skills-list li {
-  background-color: #e0f0ff;
-  color: #004a99;
-  padding: 0.4em 1em;
-  border-radius: 15px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-  white-space: nowrap;
-  user-select: none;
-}
-
-    /* Languages section */
-    .languages {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.8rem;
-      font-size: 1rem;
-      justify-content: center;
-    }
-
-    .language-item {
-      background: #e8f0fe;
-      border-radius: 24px;
-      padding: 0.65rem 1.4rem;
-      font-weight: 600;
-      color: #1a73e8;
-      box-shadow: inset 0 0 10px rgb(26 115 232 / 0.2);
-      flex: 1 1 150px;
-      min-width: 160px;
-      text-align: center;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .language-item:hover {
-      background-color: #d0e3fe;
-      box-shadow: inset 0 0 15px rgb(26 115 232 / 0.35);
-    }
-
-    /* Contact card */
-    #contact .card p {
-      font-size: 1rem;
-      margin: 0.5rem 0;
-      word-break: break-word;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 1rem 0;
-      color: #666;
-      margin-top: 3rem;
-      user-select: none;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 600px) {
-      .skills-list {
-        columns: 1;
-      }
-
-      .profile-header {
-        flex-direction: column;
-      }
-
-      nav {
-        justify-content: center;
-        gap: 1rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-  <nav>
-    <a href="#experiences" class="active" data-en="Experiences" data-fr="Expériences">Expériences</a>
-    <a href="#projects" data-en="Projects" data-fr="Projets">Projets</a>
-    <a href="#education" data-en="Education" data-fr="Formations">Formations</a>
-    <a href="#skills" data-en="Skills" data-fr="Compétences">Compétences</a>
-    <a href="#languages" data-en="Languages" data-fr="Langues">Langues</a>
-    <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
-  </nav>
-  <button id="lang-switch" aria-label="Switch language">English</button>
-</header>
-
-  <main>
-    <div class="profile-header">
-  <img src="mypic.jpg" alt="Photo Mohamed Thiam" class="profile-photo" />
-  <div class="profile-info">
-    <h1 data-en="Mohamed Thiam" data-fr="Mohamed Thiam">Mohamed Thiam</h1>
-    <p data-en="4th-year engineering student specializing in embedded & autonomous systems | Passionate about Artificial Intelligence"
-       data-fr="Étudiant ingénieur 4<sup>e</sup> année spécialisé en systèmes embarqués & autonomes | Passionné d'Intelligence Artificielle">
-      Étudiant ingénieur 4<sup>e</sup> année spécialisé en systèmes embarqués & autonomes | Passionné d'Intelligence Artificielle
-    </p>
-    <p data-en="Seeking end-of-studies internship starting February 2026 in AI, electronics, or embedded and autonomous systems"
-       data-fr="Je suis à la recherche d'un stage de fin d’études à partir de février 2026 en IA, électronique ou systèmes embarqués et autonomes">
-      Je suis à la recherche d'un stage de fin d’études à partir de février 2026 en IA électronique ou systèmes embarqués et autonomes.
-    </p>
-  </div>
-</div>
-
-    <section id="professional-experience" tabindex="-1">
-  <h2 data-en="Professional Experience" data-fr="Expériences Professionnelles">Expériences Professionnelles</h2>
-
-  <div class="card-grid">
-    <div class="card" tabindex="0">
-      <div class="title">Santé des Ruches - Avril à Juillet 2025</div>
-      <div class="company">FNGTA - ESIEA (Stage)</div>
-      <div class="description">
-        Création d’une API Flask basée sur un modèle de classification pour détecter et compter les varroas sur images de langes, hébergée en intégration continue. Développement d’une application mobile Flutter pour la gestion des ruches et la lutte contre l’infestation des varroas.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">DocLinkers - Février à Décembre 2024</div>
-      <div class="company">Futuras Tech Solutions</div>
-      <div class="description">
-        Première application de télémédecine au Sénégal, facilitant les consultations en ligne, la gestion sécurisée des données et les urgences médicales à distance.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Go Press - Juillet à Décembre 2024</div>
-      <div class="company">Entreprise / Organisation</div>
-      <div class="description">
-        Première application mobile de lectures de journaux au Sénégal avec une protection avancée des journaux et la prise en charge d'achats et d'abonnements.
-      </div>
-    </div>
-  </div>
-</section>
-
-    <section id="projects" tabindex="-1">
-  <h2 data-en="Projects" data-fr="Projets">Projets</h2>
-
-  <div class="card-grid">
-    <!-- Nouveaux projets -->
-
-    <div class="card" tabindex="0">
-      <div class="title">Projet ESIEA bot Robotique - Janvier 2025 <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Projet ESIEA : Conception et développement d’un système robotique autonome capable de naviguer intelligemment et dynamiquement dans son environnement. Intégration de capteurs et algorithmes d’optimisation pour adaptation aux obstacles, prise de décisions en temps réel et réalisation efficace de diverses tâches.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Système FPGA - Octobre à Décembre 2024 <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Projet ESIEA : Développement en VHDL d’une IP UART sur FPGA pour communication série avec PC, contrôle de servomoteur et récupération de données télémètre à ultrason, intégrés dans un système combiné de communication, contrôle et acquisition temps réel.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">DocLinkers - Février à Décembre 2024 <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Futuras Tech Solutions (Expérience professionnelle) : Première application de télémédecine au Sénégal facilitant les consultations en ligne, la gestion sécurisée des données et les urgences médicales à distance.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Lunettes Intelligentes - Septembre à Novembre 2024 <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Quinzaine Group LTD. : Conception d’un dispositif portable pour malvoyants, intégrant capteurs pour détecter obstacles et alerter via vibrations ou signaux audio, améliorant autonomie et sécurité.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Raspberry Pi 4 - Mars à Mai 2023 <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Quinzaine Group LTD. : Création d’un système basé sur Raspberry Pi 4, breadboard et capteurs pour acquisition et surveillance temps réel des données environnementales, avec prise de décisions intelligentes pour domotique et industrie.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">ZenPayMe - Août 2024 - En cours <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Quinzaine Group LTD. : Développement d’une application sécurisée permettant aux prestataires de déposer des livrables et d’être payés après validation, avec intégration de systèmes de paiement sécurisés et expérience utilisateur optimisée.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Arosa’je - Octobre 2023 - En cours <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Projet EPSI : Application mobile connectant agriculteurs et supermarchés, facilitant la vente directe, la transparence et la rémunération juste, favorisant une chaîne d’approvisionnement locale et durable.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Shareey - Octobre 2023 - En cours <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Quinzaine Group LTD. : Application multivendeur lancée au Sénégal pour faciliter les échanges commerciaux, avec ajout récent de fonctionnalités telles que service GP et messagerie instantanée.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Fear of Kaunas - Avril à Juin 2024 <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Blended Intensive Program : Participation à un programme intensif combinant travail à distance et présence à l’université de Kaunas (Lituanie), développement collaboratif d’un jeu 3D incluant modélisation.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Flutter Cloud Functions Course - Février 2024 - En cours <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Udemy : Instructeur d’un cours en ligne sur le développement mobile et Cloud, guidant les apprenants à créer une application de rappels (RemindMe) avec notifications en temps réel.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">ESTIM PRO - Juillet à Octobre 2021 <span class="toggle-icon">+</span></div>
-      <div class="description">
-        ESTIM SA : Stage professionnel de développement d’un logiciel de gestion administrative et financière, projet de sécurité sensible utilisant HTML, CSS, JavaScript, PHP, PostgreSQL, etc.
-      </div>
-    </div>
-
-    <div class="card" tabindex="0">
-      <div class="title">Trac Plus - Mai 2023 - En cours <span class="toggle-icon">+</span></div>
-      <div class="description">
-        Quinzaine Group LTD. : Application intégrant détection faciale, reconnaissance d’objets et texte, répondeur intelligent et IA avancée, incluant un détecteur intelligent de cancer du cerveau en développement.
-      </div>
-    </div>
-  </div>
-</section>
-
-    <section id="education" tabindex="-1">
-  <h2 data-en="Education" data-fr="Formations">Formations</h2>
-  <ul class="education-list">
-    <li>
-      <strong>ESIEA PARIS</strong> — 2023 - 2026<br />
-      Cycle Ingénieur en Systèmes Embarqués et Autonomes
-    </li>
-    <li>
-      <strong>EPSI PARIS</strong> — 2022 - 2023<br />
-      Bachelor en Intelligence Artificielle
-    </li>
-    <li>
-      <strong>ÉCOLE SUPÉRIEURE POLYTECHNIQUE DE DAKAR</strong> — 2019 - 2022<br />
-      DUT en Informatique
-    </li>
-  </ul>
-
-  <h3 data-en="International Experience" data-fr="Expérience Internationale">Expérience Internationale</h3>
-  <ul class="education-list">
-    <li>
-      <strong>FINLANDE</strong><br />
-      Centria University of Applied Sciences<br />
-      (Semestre à l’étranger)<br />
-      Janvier 2024 - Juin 2024
-    </li>
-    <li>
-      <strong>LITUANIE</strong><br />
-      Kaunas University of Technology, KTU<br />
-      (Blended Intensive Program)<br />
-      Avril 2024 - Juin 2024
-    </li>
-  </ul>
-</section>
-
-    <section id="skills" tabindex="-1">
-  <h2 data-en="Skills" data-fr="Compétences">Compétences</h2>
-
-  <div class="skill-category">
-    <h3 data-en="Programming Languages" data-fr="Langages de programmation">Langages de programmation</h3>
-    <ul class="skills-list">
-      <li data-en="Python" data-fr="Python">Python</li>
-      <li data-en="C" data-fr="C">C</li>
-      <li data-en="C++" data-fr="C++">C++</li>
-      <li data-en="Java" data-fr="Java">Java</li>
-      <li data-en="VHDL" data-fr="VHDL">VHDL</li>
-      <li data-en="CUDA (GPU)" data-fr="CUDA (GPU)">CUDA (GPU)</li>
-      <li data-en="Matlab" data-fr="Matlab">Matlab</li>
-      <li data-en="Simulink" data-fr="Simulink">Simulink</li>
-    </ul>
-  </div>
-
-  <div class="skill-category">
-    <h3 data-en="Embedded Systems & Hardware" data-fr="Systèmes embarqués & matériel">Systèmes embarqués & matériel</h3>
-    <ul class="skills-list">
-      <li data-en="Arduino" data-fr="Arduino">Arduino</li>
-      <li data-en="Raspberry Pi" data-fr="Raspberry Pi">Raspberry Pi</li>
-      <li data-en="ESP32" data-fr="ESP32">ESP32</li>
-      <li data-en="STM32" data-fr="STM32">STM32</li>
-      <li data-en="Seeeduino" data-fr="Seeeduino">Seeeduino</li>
-      <li data-en="FPGA" data-fr="FPGA">FPGA</li>
-      <li data-en="FreeRTOS" data-fr="FreeRTOS">FreeRTOS</li>
-      <li data-en="Zephyr" data-fr="Zephyr">Zephyr</li>
-      <li data-en="CAN Protocol" data-fr="Protocole CAN">Protocole CAN</li>
-    </ul>
-  </div>
-
-  <div class="skill-category">
-    <h3 data-en="Networking & Cloud" data-fr="Réseaux & Cloud">Réseaux & Cloud</h3>
-    <ul class="skills-list">
-      <li data-en="MQTT" data-fr="MQTT">MQTT</li>
-      <li data-en="Docker" data-fr="Docker">Docker</li>
-      <li data-en="AWS" data-fr="AWS">AWS</li>
-      <li data-en="Google Cloud" data-fr="Google Cloud">Google Cloud</li>
-      <li data-en="Firebase" data-fr="Firebase">Firebase</li>
-      <li data-en="SQL" data-fr="SQL">SQL</li>
-      <li data-en="NoSQL" data-fr="NoSQL">NoSQL</li>
-      <li data-en="MongoDB" data-fr="MongoDB">MongoDB</li>
-      <li data-en="PostgreSQL" data-fr="PostgreSQL">PostgreSQL</li>
-      <li data-en="Neo4j" data-fr="Neo4j">Neo4j</li>
-    </ul>
-  </div>
-
-  <div class="skill-category">
-    <h3 data-en="AI & Machine Learning" data-fr="IA & apprentissage automatique">IA & apprentissage automatique</h3>
-    <ul class="skills-list">
-      <li data-en="TensorFlow" data-fr="TensorFlow">TensorFlow</li>
-      <li data-en="CNN (Deep Learning)" data-fr="CNN (Apprentissage profond)">CNN (Apprentissage profond)</li>
-      <li data-en="Computer Vision" data-fr="Vision par ordinateur">Vision par ordinateur</li>
-      <li data-en="Edge AI" data-fr="Edge AI">Edge AI</li>
-    </ul>
-  </div>
-
-  <div class="skill-category">
-    <h3 data-en="Software & Development Tools" data-fr="Outils & environnement de développement">Outils & environnement de développement</h3>
-    <ul class="skills-list">
-      <li data-en="Flutter" data-fr="Flutter">Flutter</li>
-      <li data-en="Android Studio" data-fr="Android Studio">Android Studio</li>
-      <li data-en="Godot" data-fr="Godot">Godot</li>
-      <li data-en="Unity" data-fr="Unity">Unity</li>
-      <li data-en="Blender" data-fr="Blender">Blender</li>
-      <li data-en="Agile Methodologies" data-fr="Méthodologies Agile">Méthodologies Agile</li>
-      <li data-en="Git" data-fr="Git">Git</li>
-    </ul>
-  </div>
-
-  <div class="skill-category">
-    <h3 data-en="Soft Skills" data-fr="Compétences humaines">Compétences humaines</h3>
-    <ul class="skills-list">
-      <li data-en="Occupational Risk Prevention" data-fr="Prévention de risques professionnels">Prévention de risques professionnels</li>
-      <li data-en="Teamwork" data-fr="Travail d’équipe">Travail d’équipe</li>
-      <li data-en="Communication" data-fr="Communication">Communication</li>
-    </ul>
-  </div>
-</section>
-
-    <section id="languages" tabindex="-1">
-  <h2 data-en="Languages" data-fr="Langues">Langues</h2>
-  <div class="languages">
-    <div class="language-item">Français</div>
-    <div class="language-item">Anglais — TOEIC 880 (B2+/C1)</div>
-    <div class="language-item">Espagnol (Intermédiaire)</div>
-    <div class="language-item">Finnois (débutant)</div>
-  </div>
-</section>
-
-    <section id="contact" tabindex="-1">
-  <h2 data-en="Contact" data-fr="Contact">Contact</h2>
-  <div class="card">
-    <p data-en="Email: imthiam@icloud.com" data-fr="Email : imthiam@icloud.com">Email : imthiam@icloud.com</p>
-    <p data-en="Phone: +33 7 68 10 85 40" data-fr="Téléphone : +33 7 68 10 85 40">Téléphone : +33 7 68 10 85 40</p>
-    <p data-en="LinkedIn: linkedin.com/in/imthiam" data-fr="LinkedIn : linkedin.com/in/imthiam">LinkedIn : linkedin.com/in/imthiam</p>
-    <p data-en="Available throughout France and abroad" data-fr="Disponible partout en France et à l’étranger">Disponible partout en France et à l’étranger</p>
-  </div>
-</section>
-  </main>
-
-  <footer>
-    <p>© 2025 Mohamed Thiam - Tous droits réservés</p>
-  </footer>
-
-  <script>
-    // Toggle card expansion on click or keyboard Enter/Space
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('expanded');
-      });
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          card.classList.toggle('expanded');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Mohamed Thiam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
         }
-      });
-    });
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #3b82f6;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 8px;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+        }
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e2e8f0;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background-color: #3b82f6;
+            transition: width 1s ease-in-out;
+        }
+        .profile-img {
+            border: 4px solid white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12 px-4 sm:px-6 lg:px-8 shadow-lg">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="flex flex-col md:flex-row items-center mb-6 md:mb-0">
+                        <div class="mb-4 md:mb-0 md:mr-6">
+                            <!-- Placeholder for profile image - replace with your actual image -->
+                            <div class="w-32 h-32 rounded-full overflow-hidden profile-img">
+                                <!-- Replace this SVG with your actual photo -->
+                                <!-- <svg class="w-full h-full text-white bg-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                                </svg> -->
+                                <!-- You can replace the SVG with an img tag: -->
+                                <img src="mypic.jpg" alt="Mohamed Thiam" class="w-full h-full object-cover">
+                               
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-4xl font-bold tracking-tight">MOHAMED THIAM</h1>
+                            <p class="text-xl mt-2 text-blue-100">Étudiant ingénieur - Systèmes Embarqués et Autonomes</p>
+                            <p class="mt-2 text-blue-100">23 ans</p>
+                            <p class="mt-4 text-blue-100">
+                                <span class="inline-flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Recherche de stage de fin d'études à partir de février 2026 en ingénieurie IA, électronique ou systèmes embarqués et autonomes
+                                </span>
+                            </p>
+                            <p class="mt-2 text-blue-100">
+                                <span class="inline-flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    Mobile en France et à l'international
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <a href="mailto:imthiam@icloud.com" class="hover:underline">imthiam@icloud.com</a>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            <a href="https://linkedin.com/in/imthiam" target="_blank" class="hover:underline">linkedin.com/in/imthiam</a>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Ivry-sur-Seine, France</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span>+33 7 68 10 85 40</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    // Language switcher functionality
-    const langSwitch = document.getElementById('lang-switch');
-    let currentLang = 'fr';
+        <!-- Navigation Tabs -->
+        <div class="max-w-6xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex overflow-x-auto space-x-4 pb-2">
+                <button class="tab-button px-4 py-2 font-medium rounded-md bg-blue-600 text-white" data-tab="profile">Profil</button>
+                <button class="tab-button px-4 py-2 font-medium rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300" data-tab="experience">Expériences</button>
+                <button class="tab-button px-4 py-2 font-medium rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300" data-tab="education">Formation</button>
+                <button class="tab-button px-4 py-2 font-medium rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300" data-tab="skills">Compétences</button>
+                <button class="tab-button px-4 py-2 font-medium rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300" data-tab="languages">Langues</button>
+            </div>
+        </div>
 
-    function updateTexts(lang) {
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.innerHTML = (lang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-fr');
-      });
-    }
+        <!-- Main Content -->
+        <main class="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <!-- Profile Tab -->
+            <div id="profile-tab" class="tab-content active">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">À propos de moi</h2>
+                        <p class="text-gray-600 mb-6">
+                            Étudiant en 4ème année à l'ESIEA Paris, spécialisé en Systèmes Embarqués et Autonomes, je recherche un stage de fin d'études à partir de février 2026 dans le domaine de l'ingénierie IA, électronique ou systèmes embarqués et autonomes. Disponible pour une mobilité en France et à l'international.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-blue-50 p-5 rounded-lg">
+                                <h3 class="text-lg font-semibold text-blue-700 mb-3 flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                                    </svg>
+                                    Systèmes Embarqués
+                                </h3>
+                                <p class="text-gray-600">
+                                    Expérience avec Arduino, Raspberry Pi, ESP32, STM32, FPGA et divers protocoles de communication.
+                                </p>
+                            </div>
+                            <div class="bg-indigo-50 p-5 rounded-lg">
+                                <h3 class="text-lg font-semibold text-indigo-700 mb-3 flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                    </svg>
+                                    Développement
+                                </h3>
+                                <p class="text-gray-600">
+                                    Maîtrise de Python, C, C++, Java, VHDL et des technologies web modernes.
+                                </p>
+                            </div>
+                            <div class="bg-purple-50 p-5 rounded-lg">
+                                <h3 class="text-lg font-semibold text-purple-700 mb-3 flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                    </svg>
+                                    Intelligence Artificielle
+                                </h3>
+                                <p class="text-gray-600">
+                                    Compétences en TensorFlow, CNN, Computer Vision et Edge AI pour des applications embarquées.
+                                </p>
+                            </div>
+                            <div class="bg-green-50 p-5 rounded-lg">
+                                <h3 class="text-lg font-semibold text-green-700 mb-3 flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                                    </svg>
+                                    Expérience Internationale
+                                </h3>
+                                <p class="text-gray-600">
+                                    Semestre à l'étranger en Finlande et programme intensif en Lituanie, enrichissant ma perspective internationale.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    langSwitch.addEventListener('click', () => {
-      if (currentLang === 'fr') {
-        currentLang = 'en';
-        langSwitch.textContent = 'Français';
-        updateTexts('en');
-      } else {
-        currentLang = 'fr';
-        langSwitch.textContent = 'English';
-        updateTexts('fr');
-      }
-    });
+            <!-- Experience Tab -->
+            <div id="experience-tab" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Expériences et Projets</h2>
+                        
+                        <div class="space-y-8">
+                            <!-- New experiences -->
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">ZenPayMe</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Août 2024 - Toujours en cours</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Quinzaine Group LTD.</p>
+                                <p class="text-gray-700">
+                                    J'ai développé ZenPayMe, une application qui permet aux
+                                    prestataires de déposer des livrables et de se faire payer en
+                                    toute sécurité, avec une démonstration à l'appui pour valider
+                                    le travail présenté. J'ai également intégré des systèmes de
+                                    paiement sécurisés et optimisé l'expérience utilisateur pour
+                                    garantir une utilisation fluide et efficace. Un reversement
+                                    automatique au prestataire est effectué dès approbation du
+                                    livrable par le client.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Arosa'je</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Oct. 2023 - Toujours en cours</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Projet EPSI</p>
+                                <p class="text-gray-700">
+                                    Arosa'je est une application mobile qui relie directement les
+                                    agriculteurs aux supermarchés, rationalisant ainsi la chaîne
+                                    d'approvisionnement agricole. Les agriculteurs présentent
+                                    leurs produits et les supermarchés peuvent facilement les
+                                    consulter, les négocier et les acheter directement. La
+                                    plateforme favorise la transparence et une juste rémunération
+                                    des agriculteurs, et encourage les supermarchés à
+                                    s'approvisionner localement et de manière durable, améliorant
+                                    ainsi l'efficacité de l'écosystème agricole.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Shareey</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Oct. 2023 - Toujours en cours</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Quinzaine Group LTD.</p>
+                                <p class="text-gray-700">
+                                    J'ai développé une application multivendeur lancée au
+                                    Sénégal pour faciliter les échanges et développer le marché
+                                    commercial sénégalais. Certaines fonctionnalités ont
+                                    également été ajoutées récemment, comme le service GP et la
+                                    messagerie instantanée, etc...
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Fear of Kaunas</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Avril 2024 - Juin 2024</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Blended Intensive Program</p>
+                                <p class="text-gray-700">
+                                    J'ai participé au 'Blended Intensive Program' de cette année
+                                    qui s'est passé d'Avril à Juin 2024 avec une partie finale
+                                    physique qui s'est déroulée à l'université de Kaunas en Lituanie.
+                                    J'ai travaillé en groupe pour la réalisation d'un jeu en 3D avec
+                                    sa modélisation au préalable.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Flutter Cloud Functions Course</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Fev 2024 - Toujours en cours</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Udemy</p>
+                                <p class="text-gray-700">
+                                    Je suis instructeur sur Udemy. J'ai réalisé un cours autour du
+                                    développement mobile et du Cloud. Le but de ce cours a été
+                                    d'aider les apprenants à comprendre et créer une application
+                                    de rappels (RemindMe) qui permet de créer des rappels et de
+                                    recevoir des notifications à l'instant choisi.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Trac Plus</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Mai 2023 - Toujours en cours</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Quinzaine Group LTD.</p>
+                                <p class="text-gray-700">
+                                    Cette application, que j'ai créée, regroupe plusieurs
+                                    fonctionnalités telles que la détection faciale, la
+                                    reconnaissance d'objets, la reconnaissance de texte, un
+                                    répondeur intelligent et bien d'autres fonctions d'intelligence
+                                    artificielle. Et tout cela en direct ou avec des images. Le projet
+                                    comprend également un détecteur intelligent de cancer du
+                                    cerveau, qui est encore en cours de développement.
+                                </p>
+                            </div>
+                            
+                            <!-- Original experiences -->
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Projet ESIEA bot Robotique</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Janvier 2025</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Projet ESIEA</p>
+                                <p class="text-gray-700">
+                                    Nous avons conçu et développé un système permettant à un robot de
+                                    se déplacer de manière autonome, en naviguant intelligemment et
+                                    dynamiquement dans son environnement. Grâce à l'intégration de
+                                    capteurs et d'algorithmes d'optimisation, notre robot peut s'adapter
+                                    aux obstacles, prendre des décisions en temps réel et accomplir
+                                    différentes tâches de manière efficace.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Santé des Ruches</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Avril - Juillet 2025</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">FNGTA - ESIEA (Stage)</p>
+                                <p class="text-gray-700">
+                                    Création d'une API Flask (à partir d'un modèle de classification)
+                                    pour détecter et compter les varroas sur des images de
+                                    langes, hébergée sur un serveur en intégration continue. Une
+                                    application mobile a ensuite été développée avec Flutter pour
+                                    les apiculteurs afin de gérer leurs ruches et détecter les
+                                    varroas pour lutter contre l'infestation.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Système FPGA</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Octobre - Décembre 2024</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Projet ESIEA</p>
+                                <p class="text-gray-700">
+                                    Dans le cadre d'un mini-projet académique, j'ai développé en
+                                    VHDL une IP UART sur FPGA pour établir une communication
+                                    série avec un PC, permettant à la fois le contrôle d'un
+                                    servomoteur et la récupération de données d'un télémètre à
+                                    ultrason, le tout intégré dans un système combinant
+                                    communication, contrôle et acquisition en temps réel.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">DocLinkers</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Février - Décembre 2024</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Futuras Tech Solutions</p>
+                                <p class="text-gray-700">
+                                    Première application de télémédecine au Sénégal,
+                                    facilitant l'accès aux soins médicaux à distance, avec
+                                    des services innovants tels que les consultations en ligne
+                                    et la gestion sécurisée des données, en plus de la
+                                    possibilité de consultations en urgence.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Lunettes Intelligentes</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Septembre - Novembre 2024</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Quinzaine Group LTD.</p>
+                                <p class="text-gray-700">
+                                    Conception d'un dispositif portable, pour les personnes
+                                    malvoyantes, intégrant des capteurs pour détecter les
+                                    obstacles et alerter l'utilisateur via vibrations ou signaux
+                                    audio, améliorant leur autonomie et sécurité.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">Raspberry Pi 4</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Mars - Mai 2023</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">Quinzaine Group LTD.</p>
+                                <p class="text-gray-700">
+                                    J'ai créé un système utilisant le Raspberry Pi 4, un breadboard
+                                    et divers capteurs pour l'acquisition et la surveillance de
+                                    données en temps réel. La configuration permet une prise de
+                                    décision intelligente basée sur les conditions
+                                    environnementales, avec des applications allant de la
+                                    domotique à la surveillance industrielle.
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">ESTIM PRO</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>Juillet 2021 - Octobre 2021</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">ESTIM SA</p>
+                                <p class="text-gray-700">
+                                    J'ai travaillé sur ce projet en tant que stagiaire, développant un
+                                    logiciel pour la gestion administrative et financière d'ESTIM SA.
+                                    Il s'agissait d'un projet de sécurité très sensible. Nous avons
+                                    utilisé plusieurs technologies telles que HTML, CSS, JAVASCRIPT,
+                                    PHP, POSTGRESQL, etc...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    // Initialize text according to default lang
-    updateTexts(currentLang);
-  </script>
-</body>
+            <!-- Education Tab -->
+            <div id="education-tab" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Formation</h2>
+                        
+                        <div class="space-y-8">
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">ESIEA PARIS</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>2023 - 2026</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700">
+                                    Cycle Ingénieur en Systèmes Embarqués et Autonomes
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">EPSI PARIS</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>2022 - 2023</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700">
+                                    Bachelor en Intelligence Artificielle
+                                </p>
+                            </div>
+                            
+                            <div class="timeline-item pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-blue-700">ÉCOLE SUPÉRIEURE POLYTECHNIQUE DE DAKAR</h3>
+                                    <div class="flex items-center text-gray-500">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>2019 - 2022</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700">
+                                    DUT en Informatique
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <h2 class="text-2xl font-bold text-gray-800 mt-10 mb-6">Expérience Internationale</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-blue-50 p-5 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
+                                    </svg>
+                                    <h3 class="text-lg font-semibold text-blue-700">FINLANDE</h3>
+                                </div>
+                                <p class="text-gray-700 font-medium">Centria University of Applied Sciences</p>
+                                <p class="text-gray-600 italic">Semestre à l'étranger</p>
+                                <p class="text-gray-500 mt-2">Janvier 2024 - Juin 2024</p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 p-5 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <svg class="w-6 h-6 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
+                                    </svg>
+                                    <h3 class="text-lg font-semibold text-indigo-700">LITUANIE</h3>
+                                </div>
+                                <p class="text-gray-700 font-medium">Kaunas University of Technology, KTU</p>
+                                <p class="text-gray-600 italic">Blended Intensive Program</p>
+                                <p class="text-gray-500 mt-2">Avril 2024 - Juin 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Skills Tab -->
+            <div id="skills-tab" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Compétences Techniques</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-lg font-semibold text-blue-700 mb-4">Langages de Programmation</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-700">Python</span>
+                                            <span class="text-gray-500">95%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-bar-fill" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-700">C/C++</span>
+                                            <span class="text-gray-500">90%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-bar-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-700">Flutter</span>
+                                            <span class="text-gray-500">95%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-bar-fill" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-700">VHDL</span>
+                                            <span class="text-gray-500">80%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-bar-fill" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h3 class="text-lg font-semibold text-blue-700 mt-8 mb-4">Intelligence Artificielle</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                                    <span class="skill-badge bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">CNN (Deep Learning)</span>
+                                    <span class="skill-badge bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Computer Vision</span>
+                                    <span class="skill-badge bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Edge AI</span>
+                                </div>
+                                
+                                <h3 class="text-lg font-semibold text-blue-700 mt-8 mb-4">Bases de Données</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">SQL</span>
+                                    <span class="skill-badge bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">NoSQL</span>
+                                    <span class="skill-badge bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                                    <span class="skill-badge bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                                    <span class="skill-badge bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Neo4j</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-lg font-semibold text-blue-700 mb-4">Systèmes Embarqués</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Arduino</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Raspberry Pi</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">ESP32</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">STM32</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Seeeduino</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">FPGA</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">FreeRTOS</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Zephyr</span>
+                                    <span class="skill-badge bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">CAN Protocol</span>
+                                </div>
+                                
+                                <h3 class="text-lg font-semibold text-blue-700 mt-8 mb-4">Cloud & DevOps</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">MQTT</span>
+                                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Docker</span>
+                                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">AWS</span>
+                                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Google Cloud</span>
+                                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Firebase</span>
+                                </div>
+                                
+                                <h3 class="text-lg font-semibold text-blue-700 mt-8 mb-4">Développement Mobile & Outils</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Flutter</span>
+                                    <span class="skill-badge bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Android Studio</span>
+                                    <span class="skill-badge bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Godot</span>
+                                    <span class="skill-badge bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Unity</span>
+                                    <span class="skill-badge bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Blender</span>
+                                    <span class="skill-badge bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Agile Methodologies</span>
+                                    <span class="skill-badge bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Git</span>
+                                </div>
+                                
+                                <h3 class="text-lg font-semibold text-blue-700 mt-8 mb-4">Compétences Transversales</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Prévention de risques professionnels</span>
+                                    <span class="skill-badge bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Travail d'équipe</span>
+                                    <span class="skill-badge bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Communication</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages Tab -->
+            <div id="languages-tab" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Langues</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">FR</div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-blue-700">Français</h3>
+                                        <p class="text-gray-600">Langue maternelle</p>
+                                    </div>
+                                </div>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-bar-fill" style="width: 100%; background-color: #2563eb;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">EN</div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-indigo-700">Anglais</h3>
+                                        <p class="text-gray-600">Professionnel — TOEIC 880 (B2+/C1)</p>
+                                    </div>
+                                </div>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-bar-fill" style="width: 90%; background-color: #4f46e5;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">ES</div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-amber-700">Espagnol</h3>
+                                        <p class="text-gray-600">Intermédiaire</p>
+                                    </div>
+                                </div>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-bar-fill" style="width: 60%; background-color: #d97706;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-6 rounded-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-cyan-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">FI</div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-cyan-700">Finnois</h3>
+                                        <p class="text-gray-600">Débutant</p>
+                                    </div>
+                                </div>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-bar-fill" style="width: 15%; background-color: #0891b2;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Mohamed Thiam</h2>
+                    <p class="text-gray-300">Étudiant ingénieur - Systèmes Embarqués et Autonomes</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="mailto:imthiam@icloud.com" class="hover:text-blue-400 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/imthiam" target="_blank" class="hover:text-blue-400 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                            <circle cx="4" cy="4" r="2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="tel:+33768108540" class="hover:text-blue-400 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-6xl mx-auto mt-4 text-center text-gray-400 text-sm">
+                <p>© 2025 Mohamed Thiam</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Update active tab button
+                    tabButtons.forEach(btn => {
+                        if (btn.getAttribute('data-tab') === tabId) {
+                            btn.classList.remove('bg-gray-200', 'text-gray-700');
+                            btn.classList.add('bg-blue-600', 'text-white');
+                        } else {
+                            btn.classList.remove('bg-blue-600', 'text-white');
+                            btn.classList.add('bg-gray-200', 'text-gray-700');
+                        }
+                    });
+                    
+                    // Show active tab content
+                    tabContents.forEach(content => {
+                        if (content.id === tabId + '-tab') {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Animate progress bars on skills tab view
+            const skillsTabButton = document.querySelector('[data-tab="skills"]');
+            skillsTabButton.addEventListener('click', () => {
+                setTimeout(() => {
+                    const progressBars = document.querySelectorAll('.progress-bar-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }, 100);
+            });
+            
+            // Initialize feather icons
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9445273285e20288',t:'MTc0ODAwOTU5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
